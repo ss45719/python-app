@@ -1,0 +1,23 @@
+{
+  "geom_id":"625b8d77-50f6-46d8-9736-c513fef863d2",
+  "assets":[
+   {
+      "asset_id":"LC08_L1GT_014035_20191008_20191009_01_RT",
+      "cloud_cover":0.9995999999999999,
+      "acquisition_date":"2019-10-08T15:41:26Z",
+      "source":"landsat8"
+   },
+   {
+      "asset_id":"LC08_L1GT_014035_20200112_20200112_01_RT",
+      "cloud_cover":0.9998,
+      "acquisition_date":"2020-01-12T15:41:15Z",
+      "source":"landsat8"
+   },
+   {
+      "asset_id":"LC08_L1GT_014035_20200401_20200401_01_RT",
+      "cloud_cover":0.9992,
+      "acquisition_date":"2020-04-01T15:40:45Z",
+      "source":"landsat8"
+   }
+]
+}

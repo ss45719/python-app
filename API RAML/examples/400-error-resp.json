@@ -1,0 +1,16 @@
+{
+  "items":[
+    {
+      "severity":"error",
+      "code":"required",
+      "field":"field_id",
+      "message":"field_id is required"
+    },
+    {
+      "severity":"error",
+      "code":"required",
+      "field":"asset_id",
+      "message":"asset_id is required"
+    }
+  ]
+}

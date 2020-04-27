@@ -1,0 +1,97 @@
+#%RAML 1.0
+title: Management Zone
+version: v1
+version: v1
+baseUri: http://api.management-zone.syngenta.com/api/v1/management-zone
+uses:
+  Type: types/type.raml
+/filter:
+  post:
+    description: |
+      API will return geometry assets based on
+      geojson geometry and filter parameter.
+    body:
+      application/json:
+        type: Type.AssetFilterReq
+        example: !include examples/post-geometry-assets-filer-req.json
+    responses:
+      200:
+        body:
+          application/json:
+            type: Type.AssetFilterResp
+            example: !include examples/post-geometry-asset-filter-resp.json
+      400:
+        body:
+          application/json:
+            type: Type.ErrorResponse
+            example: !include examples/400-error-resp.json
+      401:
+      403:
+
+/ndvi:
+  get:
+    description: get ndvi image in geojson format
+    queryParameters:
+      geom_id:
+        type: string
+        description: geometry id
+      asset_id:
+        type: string
+        description: asset id
+    responses:
+      200:
+        body:
+          application/json:
+            type: Type.GeoJson
+            example: !include examples/get-ndvi-geojson-resp.json
+      400:
+        body:
+          application/json:
+            type: Type.ErrorResponse
+            example: !include examples/400-error-resp.json
+      403:
+      401:
+
+/cluster:
+  post:
+    description: create management zone cluster
+    body:
+      application/json:
+        type: Type.ManagementZoneReq
+        example: !include examples/post-management-zone-req.json
+    responses:
+      200:
+        body:
+          application/json:
+            type: Type.GeoJson
+            example: !include examples/post-cluster-resp.json
+      400:
+        body:
+          application/json:
+          type: Type.ErrorResponse
+          example: !include examples/400-error-resp.json
+      401:
+      403:
+/to/shp:
+  post:
+    queryParameters:
+      upload_to:
+        type: string
+        description: upload to specified url
+    description: convert geojson to shp
+    body:
+      application/json:
+        type: Type.GeoJson
+        example: !include examples/post-to-shp-req.json
+    responses:
+      200:
+        body:
+          type: file
+          example: !include examples/shapefile.zip
+      400:
+        body:
+          application/json:
+          type: Type.ErrorResponse
+          example: !include examples/400-error-resp.json
+      401:
+      403:

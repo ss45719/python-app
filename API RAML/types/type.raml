@@ -1,0 +1,105 @@
+#%RAML 1.0 Library
+
+types:
+  AssetFilterReq:
+    type: object
+    properties:
+      field_id:
+        type: string
+        required: false
+        description: farm Field Id
+      geojson:
+        type: GeoJson
+        required: true
+        description: Geojson including coordinates
+      filter:
+        type: Filter
+        required: true
+        description: Filters with start date and source
+
+  Filter:
+    type: object
+    properties:
+      fromDate:
+        type: date-only
+        required: true
+        description: start date(yyyy-mm-dd)
+      sources:
+        type: array
+        items: string
+        required: true
+        description: list of source names
+
+  AssetFilterResp:
+    type: object
+    properties:
+      geom_id: string
+      assets: Asset[]
+
+  Asset:
+    type: object
+    properties:
+      asset_id:
+        type: string
+      cloud_cover:
+        type: number
+      acquisition_date:
+        type: datetime
+      source:
+        type: string
+
+  GeoJson:
+    type: object
+    properties:
+      type:
+        type: string
+        required: true
+      features:
+        type: Feature[]
+
+  Feature:
+    type: object
+    properties:
+      type:
+        type: string
+      properties:
+        type: object
+        additionalProperties: true
+      geometry:
+        type: Geometry
+
+  Geometry:
+    type: object
+    properties:
+      type: string
+      coordinates:
+        type: array
+        items: array[]
+
+  ManagementZoneReq:
+    type: object
+    properties:
+      geom_id: string
+      asset_ids: string[]
+
+  ErrorResponse:
+    type: object
+    properties:
+      items:
+        type: array
+        items: Error
+
+  Error:
+    type: object
+    properties:
+      severity:
+        type: string
+        enum: [warn,error,info]
+      code:
+        type: string
+        description: error code
+      message:
+        type: string
+        description: message
+      field:
+        type: string
